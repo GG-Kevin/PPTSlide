@@ -53,18 +53,18 @@ BAND_Y = 1240000            # 간트 시작
 AXIS_LABEL_H = 250000
 BAND_RULE_Y = 1510000
 ROW_Y0 = 1570000
-ROW_PITCH = 360000
+ROW_PITCH = 395000
 BAR_H = 185000
 LABEL_COL_W = 2350000
 AXIS_GAP = 180000
 ROW_BAND = "FBFCFE"   # 간트 짝수행 배경
 
-CARD_Y = 3560000
-CARD_H = 2220000
+CARD_Y = 3760000
+CARD_H = 1960000
 CARD_GAP = 137160
 
-KEY_Y = 5900000
-KEY_H = 500000
+KEY_Y = 5880000
+KEY_H = 520000
 
 PAD = 130000
 
@@ -171,7 +171,8 @@ def build_roadmap(slide, c):
         # 구분선
         add(S.rule(name=f"카드선 {ph['no']}", x=cx0 + PAD, y=CARD_Y + 1090000,
                    cx=card_w - PAD * 2, color=HAIRLINE))
-        # 세부 항목
+        # 세부 항목. 상단 정렬을 유지해 카드 5장의 첫 줄이 가로로 맞게 한다
+        # (하단 여백 편차는 카드 높이를 항목 3개에 맞춰 줄이는 쪽으로 해결)
         add(S.textbox(
             name=f"카드본문 {ph['no']}", x=cx0 + PAD, y=CARD_Y + 1160000,
             cx=card_w - PAD * 2, cy=CARD_H - 1160000 - 120000,
