@@ -15,11 +15,14 @@
 templates/company_format.pptx     회사 표준 포맷 원본 (편집 금지)
 format/format_spec.json           원본에서 추출한 포맷 스펙 (기계 판독용 기준)
 format/reference_intro_slide.png  완성 예시 기준 이미지 (검증 픽셀 기준)
-content/<slide_id>.json           슬라이드 콘텐츠 구조
+content/<slide_id>.json           슬라이드 콘텐츠 구조 (slides 배열이면 여러 장)
+assets/screens/                   프로그램 스크린샷
 content/source_script.txt         원본 구술 스크립트 (보존)
 tools/extract_format.py           포맷 → 스펙 추출
 tools/shapes.py                   도형 XML 헬퍼 (그라데이션·둥근모서리·불릿)
-tools/build_slide.py              콘텐츠 + 포맷 → 로드맵형 pptx
+tools/blocks.py                   블록 렌더러 (image·table·text·note·panels·flow)
+tools/capture_app.py              배포용 HTML 프로그램 → 화면별 스크린샷
+tools/build_slide.py              콘텐츠 + 포맷 → pptx (단일/다중 슬라이드)
 tools/render.py                   pptx → PNG 미리보기
 tools/verify.py                   29개 항목 포맷 검증
 tools/render-fonts.conf           렌더 환경용 한글 대체 폰트 매핑
@@ -29,5 +32,6 @@ output/                           산출물
 ```
 
 ## 완료 기준
-`python3 tools/verify.py output/<이름>.pptx` 가 **29/29 PASS** 여야 한다.
+`python3 tools/verify.py output/<이름>.pptx` 가 **전 항목 PASS** 여야 한다.
+슬라이드 1장당 구조 15 + 화면 14 항목을 검사한다 (16장이면 408항목).
 FAIL 을 남긴 채 완료 보고하지 않는다.

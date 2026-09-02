@@ -1,0 +1,1649 @@
+{
+  "deck": "PRMS 시스템 소개",
+  "source": "배포용 index.html (L&L 통합 관리 시스템) 화면 분석 + 사용자 제공 배경/목적",
+  "slides": [
+    {
+      "title": "Background",
+      "heading": "개발 배경 및 목적",
+      "design": "blocks",
+      "blocks": [
+        {
+          "type": "text",
+          "name": "개발 배경",
+          "box": [
+            0.467,
+            1.4,
+            12.5,
+            1.6
+          ],
+          "accent": "014099",
+          "items": [
+            {
+              "lvl": 1,
+              "text": "개발 배경"
+            },
+            {
+              "lvl": 2,
+              "text": "시공 단계의 리스크 관리 시스템 운영 중 : RBE-i"
+            },
+            {
+              "lvl": 2,
+              "text": "플랜트 건설 프로젝트의 통합 리스크 관리를 위해 설계 · 구매 단계의 리스크 관리 필요"
+            },
+            {
+              "lvl": 2,
+              "text": "사업본부 신년업무보고 사항 (대표님 보고 내용에 포함)"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "name": "개발 목적",
+          "box": [
+            0.467,
+            2.68,
+            12.5,
+            0.45
+          ],
+          "accent": "014099",
+          "items": [
+            {
+              "lvl": 1,
+              "text": "개발 목적"
+            }
+          ]
+        },
+        {
+          "type": "panels",
+          "box": [
+            0.467,
+            3.14,
+            12.5,
+            2.5
+          ],
+          "gap": 0.16,
+          "items": [
+            {
+              "no": "01",
+              "title": "E-P-C 통합 관리",
+              "subtitle": "선제적 리스크 관리 효율 극대화",
+              "color": "7A5AA8",
+              "dark": "5B4185",
+              "items": [
+                "설계 · 구매 · 시공을 하나의 체계로 연결",
+                "사후 대응이 아닌 사전 식별 · 관리",
+                "단계 간 정보 단절 해소"
+              ]
+            },
+            {
+              "no": "02",
+              "title": "전사적 기술 자산화",
+              "subtitle": "L&L 의 통합적 축적",
+              "color": "4A63C4",
+              "dark": "35499C",
+              "items": [
+                "프로젝트별로 흩어진 사례를 한 곳에",
+                "공종 · 단계별로 분류하여 재사용",
+                "동일 실패의 반복 차단"
+              ]
+            },
+            {
+              "no": "03",
+              "title": "데이터 자산화 기틀",
+              "subtitle": "AI 활용을 위한 데이터 수집",
+              "color": "2FB3D6",
+              "dark": "1F8AA8",
+              "items": [
+                "구조화된 형태로 데이터 축적",
+                "축적 데이터를 AI 분석에 활용",
+                "예측형 리스크 관리의 기반"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "note",
+          "box": [
+            0.467,
+            6.3,
+            12.5,
+            0.58
+          ],
+          "label": "확장 방향",
+          "text": "시공 단계(RBE-i)에 머물던 리스크 관리를 설계 · 구매 단계까지 넓혀, E-P-C 전 단계를 하나의 체계로 관리"
+        }
+      ]
+    },
+    {
+      "title": "System Overview",
+      "heading": "시스템 구성 — 3개 모듈",
+      "design": "blocks",
+      "blocks": [
+        {
+          "type": "panels",
+          "box": [
+            0.467,
+            1.4,
+            12.5,
+            3.35
+          ],
+          "gap": 0.16,
+          "items": [
+            {
+              "no": "L&L",
+              "title": "Lessons & Learned",
+              "subtitle": "과거 사례 축적 · 착수 전 검토",
+              "color": "7A5AA8",
+              "dark": "5B4185",
+              "items": [
+                "Comprehensive Analytics Dashboard",
+                "Review for Project (착수 전 사례 검토)",
+                "Case Browser · Review List",
+                "17개 공종 × Stage 분류"
+              ]
+            },
+            {
+              "no": "TM",
+              "title": "Trend Management",
+              "subtitle": "진행 중 변경사항 기록 · 관리",
+              "color": "4A63C4",
+              "dark": "35499C",
+              "items": [
+                "Log / Master / Trend 3단 Browser",
+                "Log 입력폼 A ~ E 5개 섹션",
+                "My Work (담당자별 조치 현황)",
+                "Transfer to Master 승급"
+              ]
+            },
+            {
+              "no": "RM",
+              "title": "Risk Management",
+              "subtitle": "리스크 평가 · 조치 관리",
+              "color": "2FB3D6",
+              "dark": "1F8AA8",
+              "items": [
+                "Risk Command Center",
+                "Risk Register (4단계 등록)",
+                "Action Plan",
+                "5×5 Risk Matrix"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "table",
+          "name": "공통 기능",
+          "box": [
+            0.467,
+            5.0,
+            12.5,
+            1.28
+          ],
+          "accent": "2C3E5D",
+          "widths": [
+            1.1,
+            2.6,
+            6.0
+          ],
+          "align": [
+            "ctr",
+            "l",
+            "l"
+          ],
+          "header": [
+            "구분",
+            "기능",
+            "설명"
+          ],
+          "rows": [
+            [
+              "필터",
+              "Project × Stage × Discipline",
+              "3단 필터를 세 모듈에서 동일하게 사용"
+            ],
+            [
+              "데이터",
+              "Import Data / SAVE / Excel",
+              "JSON 연동 · 저장, 마스터 목록 일괄 반입 · 반출"
+            ],
+            [
+              "설정",
+              "Master Lists / Settings",
+              "Stage별 Discipline 코드 · 분류 체계 관리"
+            ]
+          ]
+        },
+        {
+          "type": "note",
+          "box": [
+            0.467,
+            6.4,
+            12.5,
+            0.55
+          ],
+          "label": "공통 프레임",
+          "text": "세 모듈 모두 좌측 모듈 내비 · 상단 3단 필터 · 본문의 동일한 화면 구조를 사용한다"
+        }
+      ]
+    },
+    {
+      "title": "Data Flow",
+      "heading": "모듈 간 데이터 흐름",
+      "design": "blocks",
+      "blocks": [
+        {
+          "type": "text",
+          "name": "관계 설명",
+          "box": [
+            0.467,
+            1.4,
+            12.5,
+            1.15
+          ],
+          "accent": "7A5AA8",
+          "items": [
+            {
+              "lvl": 2,
+              "text": "L&L 은 TM 의 하위 개념이 아니라, 성격이 다른 독자적인 프로그램"
+            },
+            {
+              "lvl": 3,
+              "text": "L&L 은 과거 사례를 축적 · 검토하는 시스템, TM 은 진행 중 변경사항을 기록 · 관리하는 시스템"
+            },
+            {
+              "lvl": 3,
+              "text": "그중 프로젝트에 중요한 내용만 TM 으로 이관하여, 하나의 시스템에서 함께 관리"
+            }
+          ]
+        },
+        {
+          "type": "flow",
+          "box": [
+            0.467,
+            2.72,
+            12.5,
+            1.7
+          ],
+          "gap": 0.42,
+          "node_ratio": 0.62,
+          "nodes": [
+            {
+              "label": "L&L",
+              "sub": "과거 사례 축적 · 검토",
+              "color": "7A5AA8",
+              "dark": "5B4185",
+              "arrow_label": "중요 사례 이관"
+            },
+            {
+              "label": "TM Log",
+              "sub": "발생 건 원문 기록",
+              "color": "5B54B8",
+              "dark": "423C90",
+              "arrow_label": "Transfer to Master"
+            },
+            {
+              "label": "Master",
+              "sub": "유형별 통합",
+              "color": "4A63C4",
+              "dark": "35499C",
+              "arrow_label": "승급"
+            },
+            {
+              "label": "Trend",
+              "sub": "관리 대상 확정",
+              "color": "3F87D0",
+              "dark": "2C64A4",
+              "arrow_label": "리스크 평가"
+            },
+            {
+              "label": "Risk",
+              "sub": "평가 · 조치 관리",
+              "color": "2FB3D6",
+              "dark": "1F8AA8"
+            }
+          ]
+        },
+        {
+          "type": "table",
+          "name": "단계별 성격",
+          "box": [
+            0.467,
+            4.72,
+            12.5,
+            1.6
+          ],
+          "accent": "2C3E5D",
+          "widths": [
+            1.5,
+            3.2,
+            5.0
+          ],
+          "align": [
+            "ctr",
+            "l",
+            "l"
+          ],
+          "header": [
+            "단계",
+            "성격",
+            "다음 단계로 넘기는 기준"
+          ],
+          "rows": [
+            [
+              "L&L",
+              "과거 프로젝트 사례 (원본)",
+              "착수 전 검토 결과 즉시 반영이 어렵거나 장기 · 중요 사안일 때"
+            ],
+            [
+              "TM Log",
+              "이번 프로젝트에서 발생한 건",
+              "동일 유형이 모이거나 지속 관리가 필요할 때"
+            ],
+            [
+              "Master · Trend",
+              "유형별 통합 → 관리 대상 확정",
+              "리스크로 평가가 필요할 때"
+            ],
+            [
+              "Risk",
+              "리스크로 평가 · 조치 관리",
+              "—"
+            ]
+          ]
+        },
+        {
+          "type": "note",
+          "box": [
+            0.467,
+            6.42,
+            12.5,
+            0.52
+          ],
+          "label": "한 문장",
+          "text": "L&L 은 독자 시스템, TM 은 진행 관리 시스템 — 중요한 것만 넘겨서 한 화면에서 함께 본다"
+        }
+      ]
+    },
+    {
+      "title": "Common UI",
+      "heading": "공통 화면 구성",
+      "design": "blocks",
+      "blocks": [
+        {
+          "type": "image",
+          "box": [
+            0.467,
+            1.4,
+            7.35,
+            4.95
+          ],
+          "src": "assets/screens/lnl_browser.png",
+          "caption": "L&L Case Browser — 좌측 내비 · 상단 3단 필터 · 본문"
+        },
+        {
+          "type": "text",
+          "name": "화면 3분할",
+          "box": [
+            8.0,
+            1.4,
+            4.96,
+            2.45
+          ],
+          "accent": "4A63C4",
+          "items": [
+            {
+              "lvl": 1,
+              "text": "화면은 세 영역으로 고정"
+            },
+            {
+              "lvl": 2,
+              "text": "좌측 : 모듈 내비 + 분류 트리"
+            },
+            {
+              "lvl": 3,
+              "text": "L&L / TM / Risk 전환, Stage · Discipline 트리"
+            },
+            {
+              "lvl": 2,
+              "text": "상단 : 3단 필터"
+            },
+            {
+              "lvl": 3,
+              "text": "어느 화면에서도 같은 방식으로 범위를 좁힌다"
+            },
+            {
+              "lvl": 2,
+              "text": "본문 : 목록 · 상세 · 대시보드"
+            }
+          ]
+        },
+        {
+          "type": "table",
+          "name": "필터 기준",
+          "box": [
+            8.0,
+            4.15,
+            4.96,
+            2.15
+          ],
+          "accent": "2C3E5D",
+          "widths": [
+            1.1,
+            3.0
+          ],
+          "align": [
+            "ctr",
+            "l"
+          ],
+          "header": [
+            "필터",
+            "기준"
+          ],
+          "rows": [
+            [
+              "Project",
+              "ALSM · CSSP · STA4 등 프로젝트 단위"
+            ],
+            [
+              "Stage",
+              "Engineering · Procurement · Construction · Commissioning · HSE · QM"
+            ],
+            [
+              "Discipline",
+              "17개 공종 (ARCHITECTURAL ~ STEEL STRUCTURE)"
+            ]
+          ]
+        },
+        {
+          "type": "note",
+          "box": [
+            0.467,
+            6.45,
+            12.5,
+            0.5
+          ],
+          "label": "익히는 부담",
+          "text": "화면 구조가 세 모듈에서 동일해 한 모듈을 익히면 나머지도 같은 방식으로 쓸 수 있다"
+        }
+      ]
+    },
+    {
+      "title": "L&L",
+      "heading": "① Comprehensive Analytics Dashboard",
+      "design": "blocks",
+      "blocks": [
+        {
+          "type": "image",
+          "box": [
+            0.467,
+            1.4,
+            7.9,
+            5.0
+          ],
+          "src": "assets/screens/lnl_dashboard.png",
+          "caption": "L&L 종합 분석 대시보드 — 검토 현황 · 공종별 분포 · 진척률"
+        },
+        {
+          "type": "text",
+          "name": "설명",
+          "box": [
+            8.55,
+            1.4,
+            4.41,
+            2.75
+          ],
+          "accent": "7A5AA8",
+          "items": [
+            {
+              "lvl": 1,
+              "text": "무엇을 보는 화면인가"
+            },
+            {
+              "lvl": 2,
+              "text": "프로젝트별 L&L 검토 현황을 한 표로"
+            },
+            {
+              "lvl": 3,
+              "text": "IN SCOPE / REFLECTED / NON-REFLECTED / OPEN / CLOSED / N/A"
+            },
+            {
+              "lvl": 2,
+              "text": "OPEN 을 상태별로 분해"
+            },
+            {
+              "lvl": 3,
+              "text": "Under Review · Pending Client · Pending Data · TM Log 30/60/90 · Unreviewed"
+            },
+            {
+              "lvl": 2,
+              "text": "공종별 · 단계별 분포를 그래프로"
+            }
+          ]
+        },
+        {
+          "type": "table",
+          "name": "하단 지표",
+          "box": [
+            8.55,
+            4.42,
+            4.41,
+            1.95
+          ],
+          "accent": "2C3E5D",
+          "widths": [
+            1.5,
+            2.6
+          ],
+          "align": [
+            "l",
+            "l"
+          ],
+          "header": [
+            "지표",
+            "의미"
+          ],
+          "rows": [
+            [
+              "Review Progress",
+              "전체 대비 검토 완료 비율"
+            ],
+            [
+              "Open Cases Breakdown",
+              "미결 사례의 상태별 분포"
+            ],
+            [
+              "Top 5 Delayed",
+              "지연이 많은 공종 상위 5개"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "title": "L&L",
+      "heading": "② Review for Project — 착수 전 사례 검토",
+      "design": "blocks",
+      "blocks": [
+        {
+          "type": "image",
+          "box": [
+            0.467,
+            1.4,
+            7.9,
+            5.0
+          ],
+          "src": "assets/screens/lnl_lists.png",
+          "caption": "Review for Project — 대상 프로젝트를 고르고 사례별 반영 여부를 기록"
+        },
+        {
+          "type": "text",
+          "name": "설명",
+          "box": [
+            8.55,
+            1.4,
+            4.41,
+            2.75
+          ],
+          "accent": "7A5AA8",
+          "items": [
+            {
+              "lvl": 1,
+              "text": "언제 쓰는 화면인가"
+            },
+            {
+              "lvl": 2,
+              "text": "프로젝트 착수 전, 과거 사례를 훑는 단계"
+            },
+            {
+              "lvl": 3,
+              "text": "Review Target Project 를 고르면 해당 범위의 사례가 목록으로"
+            },
+            {
+              "lvl": 2,
+              "text": "사례마다 이번 프로젝트 반영 여부를 표시"
+            },
+            {
+              "lvl": 2,
+              "text": "즉시 판단이 어려운 건은 TM Log 로 이관"
+            }
+          ]
+        },
+        {
+          "type": "table",
+          "name": "검토 상태",
+          "box": [
+            8.55,
+            4.42,
+            4.41,
+            1.95
+          ],
+          "accent": "2C3E5D",
+          "widths": [
+            1.6,
+            2.5
+          ],
+          "align": [
+            "l",
+            "l"
+          ],
+          "header": [
+            "상태",
+            "의미"
+          ],
+          "rows": [
+            [
+              "반영 완료 / 반영 안 함",
+              "검토가 끝난 건"
+            ],
+            [
+              "반영 검토 중",
+              "판단 진행 중"
+            ],
+            [
+              "발주처 협의 필요 / 데이터 대기",
+              "외부 요인으로 보류"
+            ],
+            [
+              "해당 없음",
+              "이번 프로젝트 범위 밖"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "title": "L&L",
+      "heading": "③ Case Browser — 공종 · 단계별 분류",
+      "design": "blocks",
+      "blocks": [
+        {
+          "type": "image",
+          "box": [
+            0.467,
+            1.4,
+            7.35,
+            4.95
+          ],
+          "src": "assets/screens/lnl_browser.png",
+          "caption": "좌측 트리에서 Stage · 공종을 고르면 해당 사례만 표시"
+        },
+        {
+          "type": "text",
+          "name": "분류 체계",
+          "box": [
+            8.0,
+            1.4,
+            4.96,
+            3.35
+          ],
+          "accent": "7A5AA8",
+          "items": [
+            {
+              "lvl": 1,
+              "text": "두 축으로 분류한다"
+            },
+            {
+              "lvl": 2,
+              "text": "Stage : Engineering / Construction"
+            },
+            {
+              "lvl": 2,
+              "text": "Discipline : 17개 공종"
+            },
+            {
+              "lvl": 3,
+              "text": "ARCHITECTURAL · CIVIL · ELECTRICAL · EM · Environment · F&G · FF · HSE · HVAC"
+            },
+            {
+              "lvl": 3,
+              "text": "INSTRUMENT · NewEnergy · PIPING · PROCESS · ROTATING / STATIC MECHANICAL · STEEL STRUCTURE"
+            },
+            {
+              "lvl": 2,
+              "text": "사례 번호는 공종 코드 기반으로 자동 채번"
+            },
+            {
+              "lvl": 3,
+              "text": "예) PI-001 (PIPING) · CV-001 (CIVIL)"
+            }
+          ]
+        },
+        {
+          "type": "note",
+          "box": [
+            0.467,
+            6.45,
+            12.5,
+            0.5
+          ],
+          "label": "찾는 방식",
+          "text": "검색이 아니라 분류로 찾는다 — 내 공종 · 내 단계만 좁혀 보면 검토할 사례가 곧바로 나온다"
+        }
+      ]
+    },
+    {
+      "title": "L&L",
+      "heading": "④ 사례 등록 항목",
+      "design": "blocks",
+      "blocks": [
+        {
+          "type": "image",
+          "box": [
+            0.467,
+            1.4,
+            7.0,
+            4.95
+          ],
+          "src": "assets/screens/lnl_detail.png",
+          "caption": "사례 상세 — 등록 항목과 검토(REVIEW) 영역"
+        },
+        {
+          "type": "table",
+          "name": "등록 항목",
+          "box": [
+            7.65,
+            1.4,
+            5.31,
+            4.05
+          ],
+          "accent": "2C3E5D",
+          "widths": [
+            1.0,
+            1.9,
+            2.6
+          ],
+          "align": [
+            "ctr",
+            "l",
+            "l"
+          ],
+          "header": [
+            "구분",
+            "항목",
+            "내용"
+          ],
+          "rows": [
+            [
+              "분류",
+              "Stage / Activity / Item",
+              "공종 안에서의 세부 분류"
+            ],
+            [
+              "내용",
+              "Title / Description",
+              "사례 제목과 발생 상황"
+            ],
+            [
+              "원인",
+              "Cause Category",
+              "원인 유형 (예: 설계 검증 오류)"
+            ],
+            [
+              "조치",
+              "Corrective Action",
+              "실제로 취한 조치"
+            ],
+            [
+              "예방",
+              "Preventive Action",
+              "재발 방지 가이드"
+            ],
+            [
+              "적용",
+              "RWI",
+              "이번 프로젝트 적용 대상 여부"
+            ],
+            [
+              "기타",
+              "Attachment · Company · Special Note",
+              "첨부 · 업체 · 특기사항"
+            ]
+          ]
+        },
+        {
+          "type": "text",
+          "name": "검토 영역",
+          "box": [
+            7.65,
+            5.62,
+            5.31,
+            0.85
+          ],
+          "accent": "7A5AA8",
+          "items": [
+            {
+              "lvl": 2,
+              "text": "REVIEW 영역에 검토자 · 일자 · 의견 · 최종 상태를 기록"
+            },
+            {
+              "lvl": 3,
+              "text": "원본 사례는 그대로 두고, 이번 프로젝트 대응만 따로 남긴다"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Trend Management",
+      "heading": "① Log Browser — 변경사항 기록",
+      "design": "blocks",
+      "blocks": [
+        {
+          "type": "image",
+          "box": [
+            0.467,
+            1.4,
+            7.0,
+            4.95
+          ],
+          "src": "assets/screens/tm_log.png",
+          "caption": "TM Log Browser — 좌측 Log 트리, 우측 A ~ E 입력 섹션"
+        },
+        {
+          "type": "table",
+          "name": "입력 섹션",
+          "box": [
+            7.65,
+            1.4,
+            5.31,
+            4.3
+          ],
+          "accent": "2C3E5D",
+          "widths": [
+            1.5,
+            3.8
+          ],
+          "align": [
+            "l",
+            "l"
+          ],
+          "header": [
+            "섹션",
+            "기록 내용"
+          ],
+          "rows": [
+            [
+              "A. Metadata",
+              "Description, MR No., Title, Item Category, Corresponding Phase, Item Owner, Issue Date"
+            ],
+            [
+              "B. Identification",
+              "Causer, Reason for Change, Impact(+/−), Probability, Affected Discipline, Reference Doc."
+            ],
+            [
+              "C. Analysis",
+              "Cost Impact Range"
+            ],
+            [
+              "D. Decision & Action Plan",
+              "Action Status (조치 현황), Actual Closed Date (종결일)"
+            ],
+            [
+              "E. Categorization",
+              "C.O / Claim, Value Engineering, Lessons Learned, Risk"
+            ]
+          ]
+        },
+        {
+          "type": "text",
+          "name": "조작",
+          "box": [
+            7.65,
+            5.88,
+            5.31,
+            0.6
+          ],
+          "accent": "4A63C4",
+          "items": [
+            {
+              "lvl": 2,
+              "text": "+ New Log · Transfer to Master · Save 를 한 화면에서"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Trend Management",
+      "heading": "② Log → Master → Trend 승급",
+      "design": "blocks",
+      "blocks": [
+        {
+          "type": "flow",
+          "box": [
+            0.467,
+            1.42,
+            12.5,
+            1.55
+          ],
+          "gap": 0.6,
+          "node_ratio": 0.66,
+          "nodes": [
+            {
+              "label": "Log",
+              "sub": "발생 건 원문 기록 · 최하위",
+              "color": "4A63C4",
+              "dark": "35499C",
+              "arrow_label": "Transfer to Master"
+            },
+            {
+              "label": "Master",
+              "sub": "유형별 통합 관리 · 중간",
+              "color": "3F87D0",
+              "dark": "2C64A4",
+              "arrow_label": "승급"
+            },
+            {
+              "label": "Trend",
+              "sub": "관리 대상 확정 · 최상위",
+              "color": "2FB3D6",
+              "dark": "1F8AA8"
+            }
+          ]
+        },
+        {
+          "type": "table",
+          "name": "승급 기준",
+          "box": [
+            0.467,
+            3.35,
+            12.5,
+            1.95
+          ],
+          "accent": "2C3E5D",
+          "widths": [
+            1.1,
+            3.0,
+            4.4,
+            1.8
+          ],
+          "align": [
+            "ctr",
+            "l",
+            "l",
+            "l"
+          ],
+          "header": [
+            "단계",
+            "성격",
+            "다음 단계로 넘기는 기준",
+            "화면"
+          ],
+          "rows": [
+            [
+              "Log",
+              "발생 건을 있는 그대로 기록",
+              "동일 유형이 모이거나 지속 관리가 필요할 때",
+              "Log Browser"
+            ],
+            [
+              "Master",
+              "유형별로 묶어 통합 관리",
+              "프로젝트 차원에서 계속 추적할 사안일 때",
+              "Master Browser"
+            ],
+            [
+              "Trend",
+              "관리 대상으로 확정",
+              "리스크로 평가가 필요할 때 → Risk 모듈",
+              "Trend Browser"
+            ]
+          ]
+        },
+        {
+          "type": "text",
+          "name": "이력",
+          "box": [
+            0.467,
+            5.5,
+            12.5,
+            0.85
+          ],
+          "accent": "4A63C4",
+          "items": [
+            {
+              "lvl": 2,
+              "text": "승급은 Log Browser 의 Transfer to Master 버튼에서 시작한다"
+            },
+            {
+              "lvl": 3,
+              "text": "Log No. 는 원본 L&L No. 기준으로 자동 보정되어, 승급해도 원본과의 연결이 끊기지 않는다"
+            }
+          ]
+        },
+        {
+          "type": "note",
+          "box": [
+            0.467,
+            6.42,
+            12.5,
+            0.52
+          ],
+          "label": "왜 3단인가",
+          "text": "모든 발생 건을 관리 대상으로 올리면 관리가 불가능해진다 — 걸러내는 단계가 Master 다"
+        }
+      ]
+    },
+    {
+      "title": "Trend Management",
+      "heading": "③ My Work — 담당자별 조치 현황",
+      "design": "blocks",
+      "blocks": [
+        {
+          "type": "image",
+          "box": [
+            0.467,
+            1.4,
+            7.9,
+            5.0
+          ],
+          "src": "assets/screens/tm_mywork.png",
+          "caption": "My Work — 내가 맡은 항목만 모아 열 구성을 바꿔가며 확인"
+        },
+        {
+          "type": "text",
+          "name": "설명",
+          "box": [
+            8.55,
+            1.4,
+            4.41,
+            2.75
+          ],
+          "accent": "4A63C4",
+          "items": [
+            {
+              "lvl": 1,
+              "text": "담당자 관점의 화면"
+            },
+            {
+              "lvl": 2,
+              "text": "내가 맡은 항목만 모아서 표로"
+            },
+            {
+              "lvl": 2,
+              "text": "필요한 열만 골라 보는 방식"
+            },
+            {
+              "lvl": 3,
+              "text": "Log No. · Corresponding Phase · Master/Trend No. · Owner · Issue Date · MR No. · Category · Effect"
+            },
+            {
+              "lvl": 2,
+              "text": "행 높이 · 필터 · 페이지 수 조정"
+            },
+            {
+              "lvl": 2,
+              "text": "Save to JSON 으로 작업 내용 저장"
+            }
+          ]
+        },
+        {
+          "type": "table",
+          "name": "조치 상태",
+          "box": [
+            8.55,
+            4.42,
+            4.41,
+            1.95
+          ],
+          "accent": "2C3E5D",
+          "widths": [
+            1.7,
+            2.4
+          ],
+          "align": [
+            "l",
+            "l"
+          ],
+          "header": [
+            "상태",
+            "의미"
+          ],
+          "rows": [
+            [
+              "진행 중",
+              "조치가 진행되고 있는 건"
+            ],
+            [
+              "Follow-up 필요",
+              "추가 확인이 남은 건"
+            ],
+            [
+              "Closed",
+              "종결"
+            ],
+            [
+              "TM 에서 관리할 게 아님",
+              "관리 대상에서 제외"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Risk Management",
+      "heading": "① Risk Command Center",
+      "design": "blocks",
+      "blocks": [
+        {
+          "type": "image",
+          "box": [
+            0.467,
+            1.4,
+            7.9,
+            5.0
+          ],
+          "src": "assets/screens/risk_dashboard.png",
+          "caption": "Risk Command Center — 4개 지표 · 5×5 히트맵 · 포트폴리오 상세"
+        },
+        {
+          "type": "text",
+          "name": "지표",
+          "box": [
+            8.55,
+            1.4,
+            4.41,
+            2.55
+          ],
+          "accent": "2FB3D6",
+          "items": [
+            {
+              "lvl": 1,
+              "text": "상단 4개 지표"
+            },
+            {
+              "lvl": 2,
+              "text": "Critical Exposure — 치명 등급 노출도"
+            },
+            {
+              "lvl": 2,
+              "text": "Aggregate Exposure — 전체 노출 합계"
+            },
+            {
+              "lvl": 2,
+              "text": "Overdue Actions — 기한이 지난 조치"
+            },
+            {
+              "lvl": 2,
+              "text": "Mitigation Coverage — 고위험 대비 대응 수립 비율"
+            }
+          ]
+        },
+        {
+          "type": "table",
+          "name": "패널 구성",
+          "box": [
+            8.55,
+            4.22,
+            4.41,
+            2.15
+          ],
+          "accent": "2C3E5D",
+          "widths": [
+            1.8,
+            2.3
+          ],
+          "align": [
+            "l",
+            "l"
+          ],
+          "header": [
+            "패널",
+            "내용"
+          ],
+          "rows": [
+            [
+              "5×5 Heat Matrix",
+              "Probability × Impact 분포"
+            ],
+            [
+              "Level Distribution",
+              "E ~ A 등급별 건수"
+            ],
+            [
+              "Status Lifecycle",
+              "S01 ~ S04 진행 단계"
+            ],
+            [
+              "Response Strategy",
+              "대응 전략별 건수"
+            ],
+            [
+              "Top Critical Watchlist",
+              "점수 상위 리스크 목록"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Risk Management",
+      "heading": "② Risk Register — 4단계 등록",
+      "design": "blocks",
+      "blocks": [
+        {
+          "type": "image",
+          "box": [
+            0.467,
+            1.4,
+            7.0,
+            4.95
+          ],
+          "src": "assets/screens/risk_register.png",
+          "caption": "Risk Register — 좌측은 상태(S01~S04)별 트리, 우측은 4단계 입력"
+        },
+        {
+          "type": "table",
+          "name": "등록 4단계",
+          "box": [
+            7.65,
+            1.4,
+            5.31,
+            4.3
+          ],
+          "accent": "2C3E5D",
+          "widths": [
+            1.5,
+            3.8
+          ],
+          "align": [
+            "l",
+            "l"
+          ],
+          "header": [
+            "단계",
+            "기록 내용"
+          ],
+          "rows": [
+            [
+              "① Identification",
+              "Risk No. / Type / Discipline, PRMS Category, Risk Category Lv1 · Lv2, 원인 · 위험 · 영향"
+            ],
+            [
+              "② Assessment",
+              "Probability, Schedule / Cost / Quality / HSE Impact → Risk Level 자동 산출"
+            ],
+            [
+              "③ Mitigation",
+              "대응 전략 선택, 완화 비용, 완화 계획 (담당 · 목표일 · 예산 · 상태)"
+            ],
+            [
+              "④ Monitor & Control",
+              "Risk Status S01 ~ S04, Action Plan (담당 · 목표 · 실적 · 상태)"
+            ]
+          ]
+        },
+        {
+          "type": "text",
+          "name": "트리",
+          "box": [
+            7.65,
+            5.88,
+            5.31,
+            0.6
+          ],
+          "accent": "2FB3D6",
+          "items": [
+            {
+              "lvl": 2,
+              "text": "좌측 트리가 상태별로 묶여 미평가 건과 확정 리스크가 구분된다"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Risk Management",
+      "heading": "③ 리스크 평가 기준",
+      "design": "blocks",
+      "blocks": [
+        {
+          "type": "table",
+          "name": "영향도 등급",
+          "box": [
+            0.467,
+            1.42,
+            6.1,
+            2.55
+          ],
+          "accent": "2C3E5D",
+          "widths": [
+            1.0,
+            1.8,
+            2.4
+          ],
+          "align": [
+            "ctr",
+            "l",
+            "l"
+          ],
+          "header": [
+            "코드",
+            "구분",
+            "기준 (일정 영향)"
+          ],
+          "rows": [
+            [
+              "VH",
+              "Critical",
+              "6개월 초과"
+            ],
+            [
+              "H",
+              "Very High",
+              "3 ~ 6개월"
+            ],
+            [
+              "M",
+              "High",
+              "1 ~ 3개월"
+            ],
+            [
+              "L",
+              "Medium",
+              "2 ~ 4주"
+            ],
+            [
+              "VL",
+              "Low",
+              "2주 미만"
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "name": "리스크 등급",
+          "box": [
+            6.86,
+            1.42,
+            6.1,
+            2.55
+          ],
+          "accent": "2C3E5D",
+          "widths": [
+            1.0,
+            1.8,
+            2.4
+          ],
+          "align": [
+            "ctr",
+            "l",
+            "l"
+          ],
+          "header": [
+            "등급",
+            "구분",
+            "관리 방식"
+          ],
+          "rows": [
+            [
+              "E",
+              "Critical",
+              "즉시 대응"
+            ],
+            [
+              "D",
+              "Significant",
+              "중점 관리"
+            ],
+            [
+              "C",
+              "Important",
+              "정기 점검"
+            ],
+            [
+              "B",
+              "Low",
+              "모니터링"
+            ],
+            [
+              "A",
+              "Very Low",
+              "기록 유지"
+            ]
+          ]
+        },
+        {
+          "type": "text",
+          "name": "대응",
+          "box": [
+            0.467,
+            4.3,
+            12.5,
+            1.7
+          ],
+          "accent": "2FB3D6",
+          "items": [
+            {
+              "lvl": 1,
+              "text": "대응 전략 4종과 진행 상태 4단계"
+            },
+            {
+              "lvl": 2,
+              "text": "대응 전략 : Avoid (회피) · Transfer (전가) · Mitigate (완화) · Accept (수용)"
+            },
+            {
+              "lvl": 3,
+              "text": "전략을 고르면 완화 계획을 담당 · 목표일 · 예산 · 상태 단위로 등록한다"
+            },
+            {
+              "lvl": 2,
+              "text": "진행 상태 : S01 Critical → S02 On-going → S03 Under Control → S04 Resolved"
+            }
+          ]
+        },
+        {
+          "type": "note",
+          "box": [
+            0.467,
+            6.22,
+            12.5,
+            0.62
+          ],
+          "label": "자동 산출",
+          "text": "Probability 와 Impact 를 넣으면 Risk Level 이 자동으로 계산되고, 필요하면 수동으로 조정(Override)할 수 있다"
+        }
+      ]
+    },
+    {
+      "title": "Operation",
+      "heading": "운영 · 데이터 관리",
+      "design": "blocks",
+      "blocks": [
+        {
+          "type": "image",
+          "box": [
+            0.467,
+            1.4,
+            7.0,
+            4.95
+          ],
+          "src": "assets/screens/master_lists.png",
+          "caption": "Master Lists — Stage별 Discipline 코드와 분류 체계 관리"
+        },
+        {
+          "type": "text",
+          "name": "코드 관리",
+          "box": [
+            7.65,
+            1.4,
+            5.31,
+            2.6
+          ],
+          "accent": "014099",
+          "items": [
+            {
+              "lvl": 1,
+              "text": "분류 체계를 여기서 관리한다"
+            },
+            {
+              "lvl": 2,
+              "text": "Stage별 Discipline (Code) 목록"
+            },
+            {
+              "lvl": 3,
+              "text": "TM Log 화면의 공종 선택과 채번에 그대로 사용된다"
+            },
+            {
+              "lvl": 2,
+              "text": "Cause category · Activity · Item 을 공종별로 관리"
+            },
+            {
+              "lvl": 2,
+              "text": "Project · Company 목록 관리"
+            }
+          ]
+        },
+        {
+          "type": "table",
+          "name": "데이터 입출력",
+          "box": [
+            7.65,
+            4.25,
+            5.31,
+            2.05
+          ],
+          "accent": "2C3E5D",
+          "widths": [
+            1.6,
+            2.6
+          ],
+          "align": [
+            "l",
+            "l"
+          ],
+          "header": [
+            "기능",
+            "내용"
+          ],
+          "rows": [
+            [
+              "Import Data",
+              "JSON 파일을 열어 시스템과 연동"
+            ],
+            [
+              "SAVE",
+              "연동된 JSON 에 변경사항 저장"
+            ],
+            [
+              "Excel Import / Export",
+              "마스터 목록 일괄 반입 · 반출"
+            ]
+          ]
+        },
+        {
+          "type": "note",
+          "box": [
+            0.467,
+            6.45,
+            12.5,
+            0.5
+          ],
+          "label": "확장 지점",
+          "text": "공종 · 분류 체계가 코드로 관리되므로, 사업 특성이 달라져도 화면 수정 없이 목록만 바꾸면 된다"
+        }
+      ]
+    },
+    {
+      "title": "Next Step",
+      "heading": "향후 계획",
+      "design": "blocks",
+      "blocks": [
+        {
+          "type": "panels",
+          "box": [
+            0.467,
+            1.42,
+            12.5,
+            2.85
+          ],
+          "gap": 0.16,
+          "items": [
+            {
+              "no": "01",
+              "title": "기능 완성",
+              "subtitle": "개발 중",
+              "color": "7A5AA8",
+              "dark": "5B4185",
+              "items": [
+                "Risk Matrix 화면 (준비중)",
+                "모듈 간 연계 시나리오 보완"
+              ]
+            },
+            {
+              "no": "02",
+              "title": "운영 기반",
+              "subtitle": "런칭 준비",
+              "color": "4A63C4",
+              "dark": "35499C",
+              "items": [
+                "보안 · 로그인 · 권한 체계",
+                "결제 시스템 연동"
+              ]
+            },
+            {
+              "no": "03",
+              "title": "데이터 활용",
+              "subtitle": "중장기",
+              "color": "2FB3D6",
+              "dark": "1F8AA8",
+              "items": [
+                "축적 데이터의 AI 분석 적용",
+                "예측형 리스크 관리로 확장"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "table",
+          "name": "일정",
+          "box": [
+            0.467,
+            4.55,
+            12.5,
+            1.45
+          ],
+          "accent": "2C3E5D",
+          "widths": [
+            2.2,
+            1.5,
+            6.0
+          ],
+          "align": [
+            "l",
+            "ctr",
+            "l"
+          ],
+          "header": [
+            "구분",
+            "시기",
+            "내용"
+          ],
+          "rows": [
+            [
+              "시스템 개발 Wrap-up",
+              "10월 ~ 12월",
+              "보안 · 로그인 · 결제 시스템을 추가하여 런칭"
+            ],
+            [
+              "기능 보완",
+              "런칭 이후",
+              "Risk Matrix 등 준비 중인 기능을 순차 오픈"
+            ]
+          ]
+        },
+        {
+          "type": "note",
+          "box": [
+            0.467,
+            6.2,
+            12.5,
+            0.62
+          ],
+          "label": "목표",
+          "text": "E-P-C 전 단계의 리스크와 기술 자산을 하나의 시스템에 축적하여, AI 활용이 가능한 데이터 기반을 마련한다"
+        }
+      ]
+    }
+  ]
+}

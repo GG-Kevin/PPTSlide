@@ -1,0 +1,80 @@
+[
+  {
+    "name": "lnl_dashboard",
+    "desc": "L&L 대시보드",
+    "file": "assets/screens/lnl_dashboard.png",
+    "ok": true
+  },
+  {
+    "name": "lnl_review",
+    "desc": "L&L 프로젝트 사전검토",
+    "file": "assets/screens/lnl_review.png",
+    "ok": true
+  },
+  {
+    "name": "lnl_browser",
+    "desc": "L&L 브라우저",
+    "file": "assets/screens/lnl_browser.png",
+    "ok": true
+  },
+  {
+    "name": "lnl_detail",
+    "desc": "L&L 사례 상세",
+    "file": "assets/screens/lnl_detail.png",
+    "ok": true
+  },
+  {
+    "name": "lnl_lists",
+    "desc": "L&L 리스트",
+    "file": "assets/screens/lnl_lists.png",
+    "ok": true
+  },
+  {
+    "name": "tm_log",
+    "desc": "TM Log 브라우저",
+    "file": "assets/screens/tm_log.png",
+    "ok": true
+  },
+  {
+    "name": "tm_master",
+    "desc": "TM Master 브라우저",
+    "file": "assets/screens/tm_master.png",
+    "ok": true
+  },
+  {
+    "name": "tm_trend",
+    "desc": "TM Trend 시트",
+    "file": "assets/screens/tm_trend.png",
+    "ok": true
+  },
+  {
+    "name": "tm_mywork",
+    "desc": "TM My Work",
+    "file": "assets/screens/tm_mywork.png",
+    "ok": true
+  },
+  {
+    "name": "risk_dashboard",
+    "desc": "Risk 커맨드 센터",
+    "file": "assets/screens/risk_dashboard.png",
+    "ok": true
+  },
+  {
+    "name": "risk_register",
+    "desc": "Risk Register",
+    "file": "assets/screens/risk_register.png",
+    "ok": true
+  },
+  {
+    "name": "risk_actions",
+    "desc": "Risk Action Plan",
+    "file": "assets/screens/risk_actions.png",
+    "ok": true
+  },
+  {
+    "name": "master_lists",
+    "desc": "Master Lists",
+    "file": "assets/screens/master_lists.png",
+    "ok": true
+  }
+]

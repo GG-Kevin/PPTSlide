@@ -116,11 +116,25 @@ def verify_structure(pptx_path):
         check(f"{p} 도형이 본문 영역 안에 있음", not strays, ", ".join(strays[:5]))
 
         # 카드끼리 겹치지 않는지 (좌우 배치가 무너지면 바로 잡힌다)
-        cards = sorted([sh for sh in slide.shapes if sh.name.startswith("카드 ")],
+        cards = sorted([sh for sh in slide.shapes
+                        if sh.name.startswith("카드 ") or sh.name.startswith("패널 ")],
                        key=lambda s: s.left)
         laps = [f"{a.name}/{b.name}" for a, b in zip(cards, cards[1:])
                 if a.left + a.width > b.left + 1000]
         check(f"{p} 카드 겹침 없음", not laps, f"{len(cards)}장, " + ", ".join(laps))
+
+        # 이미지: 원본 종횡비 보존 + 인쇄 가능한 해상도
+        from PIL import Image as _PILImage
+        for pic in [sh for sh in slide.shapes if sh.shape_type == 13]:
+            src = ROOT / "assets" / "screens" / Path(pic.name.replace("이미지 ", "")).name
+            if not src.exists():
+                continue
+            iw, ih = _PILImage.open(src).size
+            got, want = pic.width / pic.height, iw / ih
+            check(f"{p} 이미지 종횡비 보존", abs(got - want) / want < 0.01,
+                  f"{pic.name} {got:.3f} vs 원본 {want:.3f}")
+            dpi = iw / (pic.width / 914400)
+            check(f"{p} 이미지 해상도", dpi >= 110, f"{pic.name} {dpi:.0f}dpi")
 
         # 간트 기간 바가 월 축 범위 안에 있는지
         grids = [sh for sh in slide.shapes if sh.name.startswith("격자 ")]
@@ -167,9 +181,10 @@ def motif_profile(img):
     return {"y_ratio": y / H, "left_rgb": list(c1), "right_rgb": list(c2), "split_ratio": round(split, 3)}
 
 
-def verify_render(png_path):
+def verify_render(png_path, page=None):
     from PIL import Image
 
+    tag = f"p{page} " if page else ""
     img = Image.open(png_path).convert("RGB")
     ref = Image.open(REFERENCE).convert("RGB")
     W, H = img.size
@@ -177,17 +192,17 @@ def verify_render(png_path):
     # 본문 영역 아래 여백(콘텐츠도 페이지번호도 없는 곳)에서 배경색을 본다
     bg_pts = [(0.40, 0.97), (0.012, 0.50), (0.60, 0.985)]
     bg = [img.getpixel((int(W * fx), int(H * fy))) for fx, fy in bg_pts]
-    check("배경 흰색", all(p[0] > 245 and p[1] > 245 and p[2] > 245 for p in bg), str(bg))
+    check(tag + "배경 흰색", all(p[0] > 245 and p[1] > 245 and p[2] > 245 for p in bg), str(bg))
 
     got, want = motif_profile(img), motif_profile(ref)
-    if check("상단 모티프 바 검출", got is not None and want is not None, f"{got}"):
-        check("모티프 바 세로위치", abs(got["y_ratio"] - want["y_ratio"]) < 0.01,
+    if check(tag + "상단 모티프 바 검출", got is not None and want is not None, f"{got}"):
+        check(tag + "모티프 바 세로위치", abs(got["y_ratio"] - want["y_ratio"]) < 0.01,
               f"{got['y_ratio']:.4f} vs 기준 {want['y_ratio']:.4f}")
-        check("모티프 바 좌측 남색", max(abs(a - b) for a, b in zip(got["left_rgb"], want["left_rgb"])) <= 6,
+        check(tag + "모티프 바 좌측 남색", max(abs(a - b) for a, b in zip(got["left_rgb"], want["left_rgb"])) <= 6,
               f"{got['left_rgb']} vs {want['left_rgb']}")
-        check("모티프 바 우측 녹색", max(abs(a - b) for a, b in zip(got["right_rgb"], want["right_rgb"])) <= 6,
+        check(tag + "모티프 바 우측 녹색", max(abs(a - b) for a, b in zip(got["right_rgb"], want["right_rgb"])) <= 6,
               f"{got['right_rgb']} vs {want['right_rgb']}")
-        check("모티프 바 색 분할점", abs(got["split_ratio"] - want["split_ratio"]) < 0.02,
+        check(tag + "모티프 바 색 분할점", abs(got["split_ratio"] - want["split_ratio"]) < 0.02,
               f"{got['split_ratio']} vs {want['split_ratio']}")
 
     def dark_bbox(im, x0, y0, x1, y1, skip=None):
@@ -204,14 +219,14 @@ def verify_render(png_path):
 
     t_got = dark_bbox(img, 5, H * 0.01, W * 0.6, H * 0.075)
     t_ref = dark_bbox(ref, 5, ref.size[1] * 0.01, ref.size[0] * 0.6, ref.size[1] * 0.075)
-    if check("제목 텍스트 존재", t_got is not None, str(t_got)):
-        check("제목 좌측 정렬 위치", abs(t_got[0] - t_ref[0]) < 0.012,
+    if check(tag + "제목 텍스트 존재", t_got is not None, str(t_got)):
+        check(tag + "제목 좌측 정렬 위치", abs(t_got[0] - t_ref[0]) < 0.012,
               f"x={t_got[0]:.4f} vs 기준 {t_ref[0]:.4f}")
-        check("제목 세로 위치", abs(t_got[1] - t_ref[1]) < 0.015,
+        check(tag + "제목 세로 위치", abs(t_got[1] - t_ref[1]) < 0.015,
               f"y={t_got[1]:.4f} vs 기준 {t_ref[1]:.4f}")
 
     pn = dark_bbox(img, W * 0.95, H * 0.94, W - 2, H - 2)
-    check("우하단 페이지 번호", pn is not None, str(pn))
+    check(tag + "우하단 페이지 번호", pn is not None, str(pn))
 
     # 본문 허용 경계는 포맷의 본문 플레이스홀더에서 계산한다 (임의의 상수 금지)
     right_max = BODY_BOX[2] / SPEC["slide_size_emu"]["cx"] + 0.005
@@ -220,12 +235,12 @@ def verify_render(png_path):
     body = dark_bbox(img, 2, H * 0.10, W - 2, H * 0.99, skip=page_num)
     ref_body = dark_bbox(ref, 2, ref.size[1] * 0.10, ref.size[0] - 2,
                          ref.size[1] * 0.99, skip=page_num)
-    if check("본문 콘텐츠 존재", body is not None, str(body)):
-        check("본문 좌측 여백", abs(body[0] - ref_body[0]) < 0.012,
+    if check(tag + "본문 콘텐츠 존재", body is not None, str(body)):
+        check(tag + "본문 좌측 여백", abs(body[0] - ref_body[0]) < 0.012,
               f"x={body[0]:.4f} vs 기준 {ref_body[0]:.4f}")
-        check("본문 우측 여백 초과 없음", body[2] <= right_max,
+        check(tag + "본문 우측 여백 초과 없음", body[2] <= right_max,
               f"right={body[2]:.4f} (한계 {right_max:.4f})")
-        check("본문 하단 넘침 없음", body[3] <= bottom_max,
+        check(tag + "본문 하단 넘침 없음", body[3] <= bottom_max,
               f"bottom={body[3]:.4f} (한계 {bottom_max:.4f})")
 
 
@@ -233,8 +248,11 @@ def main():
     pptx_path = Path(sys.argv[1])
     verify_structure(pptx_path)
     from render import render
-    pngs = render(pptx_path, ROOT / "output" / "preview", dpi=102)
-    verify_render(pngs[0])
+    outdir = ROOT / "output" / ("preview" if pptx_path.stem == "Introduction_개발일정"
+                                else f"preview_{pptx_path.stem}")
+    pngs = render(pptx_path, outdir, dpi=102)
+    for i, png in enumerate(pngs, 1):
+        verify_render(png, page=i if len(pngs) > 1 else None)
 
     failed = [r for r in results if not r["ok"]]
     report = {"target": str(pptx_path), "passed": len(results) - len(failed),

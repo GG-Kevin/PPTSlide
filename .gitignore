@@ -2,3 +2,4 @@
 output/preview/_pdf/
 __pycache__/
 *.pyc
+.capture/

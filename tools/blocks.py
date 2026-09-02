@@ -242,3 +242,121 @@ def render(slide, blocks, root=None):
         else:
             raise SystemExit(f"모르는 블록 유형: {t}")
     return report
+
+
+# ── 패널 카드 (N열) ───────────────────────────────────────────────────────
+def add_panels(slide, spec, box):
+    x, y, cx, cy = emu_box(box)
+    items = spec["items"]
+    gap = int(spec.get("gap", 0.15) * IN)
+    n = len(items)
+    w = (cx - gap * (n - 1)) / n
+    pad = 130000
+    add = slide.shapes._spTree.append
+    for i, it in enumerate(items):
+        cx0 = x + (w + gap) * i
+        color = it.get("color", BRAND_NAVY)
+        dark = it.get("dark", color)
+        add(S.shape(name=f"패널 {i + 1}", prst="roundRect", adj=2600,
+                    x=cx0, y=y, cx=w, cy=cy, fill=S.solid(CARD_BG),
+                    line=f'<a:ln w="9525">{S.solid(CARD_LN)}</a:ln>',
+                    shadow=S.soft_shadow()))
+        r = int(w * 0.026)
+        add(S.shape(name=f"패널스트립 {i + 1}", prst="rect", x=cx0 + r, y=y,
+                    cx=w - r * 2, cy=42000, fill=S.grad(color, dark, angle=0)))
+        head_y = y + pad
+        if it.get("no"):
+            add(S.shape(name=f"패널배지 {i + 1}", prst="roundRect", adj=28000,
+                        x=cx0 + pad, y=head_y, cx=340000, cy=340000,
+                        fill=S.grad(color, dark, angle=2700000),
+                        text_paras=[S.para([S.run(it["no"], font=FONT, size=1300,
+                                                  color="FFFFFF", bold=True)], align="ctr")]))
+            head_y += 430000
+        add(S.textbox(name=f"패널제목 {i + 1}", x=cx0 + pad, y=head_y,
+                      cx=w - pad * 2, cy=460000,
+                      paras=[S.para([S.run(it["title"], font=FONT, size=1250,
+                                           color=INK, bold=True)], line_pts=16)]))
+        ty = head_y + 400000
+        if it.get("subtitle"):
+            add(S.textbox(name=f"패널부제 {i + 1}", x=cx0 + pad, y=ty,
+                          cx=w - pad * 2, cy=250000,
+                          paras=[S.para([S.run(it["subtitle"], font=FONT, size=950,
+                                               color=color, bold=True)], line_pts=13)]))
+            ty += 250000
+        add(S.rule(name=f"패널선 {i + 1}", x=cx0 + pad, y=ty, cx=w - pad * 2, color=HAIRLINE))
+        add(S.textbox(
+            name=f"패널본문 {i + 1}", x=cx0 + pad, y=ty + 80000,
+            cx=w - pad * 2, cy=y + cy - (ty + 80000) - 110000,
+            paras=[S.para([S.run(t, font=FONT, size=1000, color=BODY)],
+                          line_pts=13.5, before_pts=(0 if j == 0 else 5),
+                          marL=139700, indent=-139700,
+                          bullet="▪", bullet_font="Arial", bullet_color=color,
+                          bullet_size=90000)
+                   for j, t in enumerate(it.get("items", []))]))
+
+
+# ── 흐름도 (가로 단계 + 화살표) ───────────────────────────────────────────
+def add_flow(slide, spec, box):
+    x, y, cx, cy = emu_box(box)
+    nodes = spec["nodes"]
+    n = len(nodes)
+    gap = int(spec.get("gap", 0.42) * IN)
+    node_h = int(cy * spec.get("node_ratio", 0.60))
+    w = (cx - gap * (n - 1)) / n
+    add = slide.shapes._spTree.append
+    for i, nd in enumerate(nodes):
+        nx = x + (w + gap) * i
+        color = nd.get("color", BRAND_NAVY)
+        dark = nd.get("dark", color)
+        paras = [S.para([S.run(nd["label"], font=FONT, size=1200, color="FFFFFF",
+                               bold=True)], align="ctr", line_pts=15)]
+        if nd.get("sub"):
+            paras.append(S.para([S.run(nd["sub"], font=FONT, size=900, color="E8EEF7")],
+                                align="ctr", line_pts=12, before_pts=2))
+        add(S.shape(name=f"흐름 {i + 1}", prst="roundRect", adj=9000,
+                    x=nx, y=y, cx=w, cy=node_h,
+                    fill=S.grad(color, dark, angle=5400000),
+                    line=f'<a:ln w="9525">{S.solid(dark)}</a:ln>',
+                    text_paras=paras, ins=(45720, 45720, 45720, 45720),
+                    shadow=S.soft_shadow()))
+        if i < n - 1:
+            ax = nx + w + (gap - 150000) / 2
+            add(S.shape(name=f"화살표 {i + 1}", prst="triangle", rot=5400000,
+                        x=ax, y=y + node_h / 2 - 90000, cx=150000, cy=180000,
+                        fill=S.solid("A9B4C6")))
+            if nd.get("arrow_label"):
+                add(S.textbox(name=f"화살표라벨 {i + 1}",
+                              x=nx + w - 500000, y=y + node_h + 60000,
+                              cx=gap + 1000000, cy=260000,
+                              paras=[S.para([S.run(nd["arrow_label"], font=FONT,
+                                                   size=900, color="6B7688")], align="ctr")]))
+
+
+def _render_one(slide, b, root):
+    t = b["type"]
+    if t == "image":
+        return [add_image(slide, b["src"], b["box"], caption=b.get("caption"),
+                          frame=b.get("frame", True), root=root)]
+    if t == "images":
+        return add_images(slide, b["items"], b["box"], gap=b.get("gap", 0.16), root=root)
+    if t == "table":
+        add_table(slide, b, b["box"])
+    elif t == "text":
+        add_text(slide, b["items"], b["box"], accent=b.get("accent", BRAND_NAVY),
+                 name=b.get("name", "본문"))
+    elif t == "note":
+        add_note(slide, b, b["box"])
+    elif t == "panels":
+        add_panels(slide, b, b["box"])
+    elif t == "flow":
+        add_flow(slide, b, b["box"])
+    else:
+        raise SystemExit(f"모르는 블록 유형: {t}")
+    return []
+
+
+def render(slide, blocks, root=None):   # noqa: F811  (위 정의를 대체)
+    out = []
+    for b in blocks:
+        out += _render_one(slide, b, root)
+    return out

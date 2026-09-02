@@ -25,7 +25,7 @@ PPTX 안의 폰트 지정은 바뀌지 않는다.
 | 스크립트 구조화 | `ppt-text-analyst` | `content/<slide_id>.json`, `content/source_script.txt` |
 | 도해 제작 | `ppt-graphic-builder` | `tools/build_slide.py` 의 도형 XML·좌표 상수 |
 | 슬라이드 생성 | `ppt-builder` | `output/<이름>.pptx` |
-| 최종 검증 | `ppt-verifier` | `output/verify_report.json` (29/29 PASS 여야 종료) |
+| 최종 검증 | `ppt-verifier` | `output/verify_report.json` (전 항목 PASS 여야 종료) |
 
 검증에서 FAIL 이 나오면 **해당 단계로 되돌아가 수정하고 다시 검증한다.** PASS 할 때까지 반복한다.
 
@@ -34,7 +34,8 @@ PPTX 안의 폰트 지정은 바뀌지 않는다.
 python3 tools/extract_format.py                                   # 포맷 → 스펙
 python3 tools/build_slide.py content/x.json "output/x.pptx"       # 슬라이드 생성
 python3 tools/render.py "output/x.pptx" output/preview --dpi 102  # 미리보기 PNG
-python3 tools/verify.py "output/x.pptx"                           # 29개 항목 검증
+python3 tools/verify.py "output/x.pptx"                           # 슬라이드당 29항목 검증
+python3 tools/capture_app.py <배포용.html>                          # 프로그램 화면 캡처
 ```
 
 ## 3. 절대 규칙

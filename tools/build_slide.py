@@ -217,13 +217,10 @@ def get_layout(prs, name):
     raise SystemExit(f"레이아웃 '{name}' 을 포맷에서 찾을 수 없음")
 
 
-def build(content_path, out_path):
-    c = json.loads(Path(content_path).read_text(encoding="utf-8"))
-    prs = Presentation(str(TEMPLATE))
-    delete_all_slides(prs)
+def add_one_slide(prs, c):
     slide = prs.slides.add_slide(get_layout(prs, c.get("layout", SPEC["body_slide_layout"])))
 
-    # 제목 · ❖ 대분류는 템플릿 플레이스홀더에 그대로 넣어 포맷을 상속받는다
+    # 제목 · ❖ 대분류는 템플릿 플레이스홀더에 넣어 포맷을 상속받는다
     slide.shapes.title.text_frame.paragraphs[0].add_run().text = c["title"]
     body = next(s for s in slide.placeholders
                 if s.element.find(f".//{qn('p:ph')}") is not None
@@ -233,22 +230,35 @@ def build(content_path, out_path):
     design = c.get("design", "roadmap")
     if design == "roadmap":
         build_roadmap(slide, c)
-    elif design == "blocks":
-        # 초안을 블록 목록으로 옮긴 슬라이드 (이미지 · 표 · 텍스트 자유 조합)
-        if c.get("meta"):
-            slide.shapes._spTree.append(S.textbox(
-                name="메타", x=CONTENT_R - 6000000, y=META_Y, cx=6000000, cy=280000,
-                paras=[S.para([S.run(c["meta"], font=FONT, size=1000, color=MUTED)],
-                              align="r")], anchor="ctr"))
-        for item in B.render(slide, c["blocks"], root=ROOT):
-            print("  이미지:", item["name"], f"{item['px'][0]}x{item['px'][1]}px",
-                  f"표시 {item['display_in']}in", f"{item['dpi']}dpi")
-    else:
+        return []
+    if design != "blocks":
         raise SystemExit(f"모르는 design: {design}")
+
+    if c.get("meta"):
+        slide.shapes._spTree.append(S.textbox(
+            name="메타", x=CONTENT_R - 6000000, y=META_Y, cx=6000000, cy=280000,
+            paras=[S.para([S.run(c["meta"], font=FONT, size=1000, color=MUTED)],
+                          align="r")], anchor="ctr"))
+    return B.render(slide, c["blocks"], root=ROOT)
+
+
+def build(content_path, out_path):
+    c = json.loads(Path(content_path).read_text(encoding="utf-8"))
+    prs = Presentation(str(TEMPLATE))
+    delete_all_slides(prs)
+
+    slides = c["slides"] if "slides" in c else [c]
+    for i, sc in enumerate(slides, 1):
+        imgs = add_one_slide(prs, sc)
+        print(f"  [{i:2d}] {sc['title']} — {sc['heading']}")
+        for im in imgs:
+            flag = "  ⚠ 저해상도" if im["dpi"] < B.MIN_DPI else ""
+            print(f"        이미지 {im['px'][0]}x{im['px'][1]}px "
+                  f"→ {im['display_in']}in @ {im['dpi']}dpi{flag}")
 
     Path(out_path).parent.mkdir(parents=True, exist_ok=True)
     prs.save(str(out_path))
-    print(f"wrote {out_path}")
+    print(f"wrote {out_path}  ({len(slides)}장)")
 
 
 if __name__ == "__main__":
