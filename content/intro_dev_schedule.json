@@ -1,0 +1,36 @@
+{
+  "slide_id": "intro_dev_schedule",
+  "layout": "3. 본문 및 내용",
+  "title": "Introduction",
+  "heading": "개발 일정",
+  "process": {
+    "steps": [
+      {"label": ["KOM &", "방향성 검토"],   "top": "7D58AA", "mid": "825AB0", "bottom": "583D78"},
+      {"label": ["L&L System", "Mgmt"],     "top": "5D4EB5", "mid": "6353BB", "bottom": "413781"},
+      {"label": ["Trend Mgmt"],             "top": "465AC0", "mid": "4B60C6", "bottom": "313F88"},
+      {"label": ["Risk Mgmt"],              "top": "3D82CD", "mid": "4287D2", "bottom": "2B5B91"},
+      {"label": ["시스템 개발", "Wrap-up"],  "top": "35B5D8", "mid": "39BBDD", "bottom": "258198"}
+    ]
+  },
+  "detail": [
+    {"lvl": 2, "text": "1단계 (~3월 중순) : KOM & 방향성 검토", "bold": true},
+    {"lvl": 4, "text": "TFT 결성, 현업 사용 시스템 및 Stage/공종별 업무 파악"},
+    {"lvl": 4, "text": "개발 방향성 : 현업이 실제 쓰고 있는 체계를 중심으로 개발하고, 여기에 리스크 관리 관점을 접목"},
+    {"lvl": 4, "text": "L&L(착수 전 사례 검토)과 Trend Mgmt(입찰 대비 변경사항 기록·관리) 2개 시스템 필요성 도출"},
+
+    {"lvl": 2, "text": "2단계 (3월 중순 ~ 4월 중순) : L&L System Mgmt", "bold": true},
+    {"lvl": 4, "text": "기존 HMAP 관리시스템을 기반으로 사례를 축적·활용하는 L&L 운영 시스템 개발"},
+    {"lvl": 4, "text": "즉시 반영이 어렵거나 장기·중요 사안은 Trend Mgmt로 이관하여 관리하는 체계 구축"},
+
+    {"lvl": 2, "text": "3단계 (4월 중순 ~ 5월 중순) : Trend Mgmt", "bold": true},
+    {"lvl": 4, "text": "운영 중인 SAT4 · CSSP 자료를 연계하여 Trend Management 시스템 개발"},
+    {"lvl": 4, "text": "Log → Master → Trend 3단계 분류 체계 적용 (Log 최하위, Trend 최상위)"},
+
+    {"lvl": 2, "text": "4단계 (5월 중순 ~ 6월, 9월) : Risk Mgmt", "bold": true},
+    {"lvl": 4, "text": "L&L 및 Trend Management 시스템에 리스크(Risk) 관리 개념 도입"},
+
+    {"lvl": 2, "text": "5단계 (10월 ~ 12월) : 시스템 개발 Wrap-up", "bold": true},
+    {"lvl": 4, "text": "보안 · 로그인 · 결제 시스템을 추가하여 런칭 예정"}
+  ],
+  "source_script": "사용자가 제공한 1~5단계 구술 스크립트를 개조식으로 재구성한 결과. 원문은 content/source_script.txt 참고."
+}

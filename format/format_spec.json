@@ -1,0 +1,427 @@
+{
+  "template": "templates/company_format.pptx",
+  "slide_size_emu": {
+    "cx": 12192000,
+    "cy": 6858000
+  },
+  "slide_size_in": {
+    "w": 13.3333,
+    "h": 7.5
+  },
+  "layouts": {
+    "3. 본문 및 내용": {
+      "shapes": [
+        {
+          "name": "그림 1",
+          "shape_type": "PICTURE (13)",
+          "ph": null,
+          "left": 0,
+          "top": 549276,
+          "width": 12192000,
+          "height": 47625
+        },
+        {
+          "name": "슬라이드 번호 개체 틀 10",
+          "shape_type": "TEXT_BOX (17)",
+          "ph": null,
+          "left": 11074400,
+          "top": 6453189,
+          "width": 1117600,
+          "height": 365125
+        },
+        {
+          "name": "텍스트 개체 틀 8",
+          "shape_type": "PLACEHOLDER (14)",
+          "ph": {
+            "type": "body",
+            "sz": "quarter",
+            "idx": "10",
+            "hasCustomPrompt": "1"
+          },
+          "left": 335360,
+          "top": 764704,
+          "width": 11521280,
+          "height": 5688484
+        },
+        {
+          "name": "제목 1",
+          "shape_type": "PLACEHOLDER (14)",
+          "ph": {
+            "type": "title"
+          },
+          "left": 158110,
+          "top": 75502,
+          "width": 11698530,
+          "height": 486474
+        }
+      ]
+    },
+    "2. 목차": {
+      "shapes": [
+        {
+          "name": "그림 1",
+          "shape_type": "PICTURE (13)",
+          "ph": null,
+          "left": 0,
+          "top": 549276,
+          "width": 12192000,
+          "height": 47625
+        },
+        {
+          "name": "슬라이드 번호 개체 틀 10",
+          "shape_type": "TEXT_BOX (17)",
+          "ph": null,
+          "left": 11074400,
+          "top": 6453189,
+          "width": 1117600,
+          "height": 365125
+        },
+        {
+          "name": "내용 개체 틀 2",
+          "shape_type": "PLACEHOLDER (14)",
+          "ph": {
+            "idx": "1"
+          },
+          "left": 3082742,
+          "top": 764704,
+          "width": 7621770,
+          "height": 5871046
+        },
+        {
+          "name": "제목 1",
+          "shape_type": "PLACEHOLDER (14)",
+          "ph": {
+            "type": "title"
+          },
+          "left": 158110,
+          "top": 12701,
+          "width": 11698530,
+          "height": 549275
+        }
+      ]
+    },
+    "빈화면": {
+      "shapes": []
+    },
+    "제목 및 내용": {
+      "shapes": [
+        {
+          "name": "날짜 개체 틀 3",
+          "shape_type": "PLACEHOLDER (14)",
+          "ph": {
+            "type": "dt",
+            "sz": "half",
+            "idx": "10"
+          },
+          "left": null,
+          "top": null,
+          "width": null,
+          "height": null
+        },
+        {
+          "name": "바닥글 개체 틀 4",
+          "shape_type": "PLACEHOLDER (14)",
+          "ph": {
+            "type": "ftr",
+            "sz": "quarter",
+            "idx": "11"
+          },
+          "left": null,
+          "top": null,
+          "width": null,
+          "height": null
+        },
+        {
+          "name": "슬라이드 번호 개체 틀 5",
+          "shape_type": "PLACEHOLDER (14)",
+          "ph": {
+            "type": "sldNum",
+            "sz": "quarter",
+            "idx": "12"
+          },
+          "left": null,
+          "top": null,
+          "width": null,
+          "height": null
+        },
+        {
+          "name": "직선 연결선 7",
+          "shape_type": "LINE (9)",
+          "ph": null,
+          "left": 624423,
+          "top": 1052513,
+          "width": 10943167,
+          "height": 0
+        },
+        {
+          "name": "내용 개체 틀 2",
+          "shape_type": "PLACEHOLDER (14)",
+          "ph": {
+            "idx": "1"
+          },
+          "left": 609600,
+          "top": 1124744,
+          "width": 10972800,
+          "height": 5210970
+        },
+        {
+          "name": "제목 6",
+          "shape_type": "PLACEHOLDER (14)",
+          "ph": {
+            "type": "title"
+          },
+          "left": 609600,
+          "top": 274638,
+          "width": 10972800,
+          "height": 850106
+        }
+      ]
+    },
+    "7_1. 일반현황": {
+      "shapes": [
+        {
+          "name": "직사각형 4",
+          "shape_type": "AUTO_SHAPE (1)",
+          "ph": null,
+          "left": 10883449,
+          "top": 76526,
+          "width": 1150055,
+          "height": 292553
+        },
+        {
+          "name": "그림 6",
+          "shape_type": "PICTURE (13)",
+          "ph": null,
+          "left": 1,
+          "top": 549281,
+          "width": 12192000,
+          "height": 47625
+        }
+      ]
+    },
+    "제목": {
+      "shapes": [
+        {
+          "name": "프레젠테이션 제목",
+          "shape_type": "PLACEHOLDER (14)",
+          "ph": {
+            "type": "title",
+            "hasCustomPrompt": "1"
+          },
+          "left": 666750,
+          "top": 1544836,
+          "width": 10858500,
+          "height": 2321719
+        },
+        {
+          "name": "본문 첫 번째 줄…",
+          "shape_type": "PLACEHOLDER (14)",
+          "ph": {
+            "type": "body",
+            "sz": "quarter",
+            "idx": "1",
+            "hasCustomPrompt": "1"
+          },
+          "left": 666750,
+          "top": 3750469,
+          "width": 10858500,
+          "height": 1023417
+        },
+        {
+          "name": "저자 및 날짜",
+          "shape_type": "PLACEHOLDER (14)",
+          "ph": {
+            "type": "body",
+            "sz": "quarter",
+            "idx": "21",
+            "hasCustomPrompt": "1"
+          },
+          "left": 666750,
+          "top": 5913856,
+          "width": 10858500,
+          "height": 301824
+        },
+        {
+          "name": "슬라이드 번호",
+          "shape_type": "PLACEHOLDER (14)",
+          "ph": {
+            "type": "sldNum",
+            "sz": "quarter",
+            "idx": "2"
+          },
+          "left": 5965974,
+          "top": 6418819,
+          "width": 261482,
+          "height": 223619
+        }
+      ]
+    },
+    "1_3. 본문 및 내용": {
+      "shapes": [
+        {
+          "name": "그림 1",
+          "shape_type": "PICTURE (13)",
+          "ph": null,
+          "left": 0,
+          "top": 549276,
+          "width": 12192000,
+          "height": 47625
+        },
+        {
+          "name": "슬라이드 번호 개체 틀 10",
+          "shape_type": "TEXT_BOX (17)",
+          "ph": null,
+          "left": 11074400,
+          "top": 6453189,
+          "width": 1117600,
+          "height": 365125
+        },
+        {
+          "name": "텍스트 개체 틀 8",
+          "shape_type": "PLACEHOLDER (14)",
+          "ph": {
+            "type": "body",
+            "sz": "quarter",
+            "idx": "10",
+            "hasCustomPrompt": "1"
+          },
+          "left": 335360,
+          "top": 764704,
+          "width": 11521280,
+          "height": 5688484
+        },
+        {
+          "name": "제목 1",
+          "shape_type": "PLACEHOLDER (14)",
+          "ph": {
+            "type": "title"
+          },
+          "left": 158110,
+          "top": 75502,
+          "width": 11698530,
+          "height": 486474
+        }
+      ]
+    },
+    "2_3. 본문 및 내용": {
+      "shapes": [
+        {
+          "name": "텍스트 개체 틀 8",
+          "shape_type": "PLACEHOLDER (14)",
+          "ph": {
+            "type": "body",
+            "sz": "quarter",
+            "idx": "10"
+          },
+          "left": 335360,
+          "top": 764704,
+          "width": 11521280,
+          "height": 5688484
+        }
+      ]
+    }
+  },
+  "title_style": {
+    "sz": 2400,
+    "bold": true,
+    "font": "현대하모니 L",
+    "align": "l"
+  },
+  "body_levels": {
+    "lvl1": {
+      "sz": 1700,
+      "bold": true,
+      "font": "현대하모니 L",
+      "bullet_char": "v",
+      "bullet_font": "Wingdings",
+      "line_spacing_pts": 32.0,
+      "marL": 285750,
+      "indent": -285750
+    },
+    "lvl2": {
+      "sz": 1400,
+      "bold": null,
+      "font": "현대하모니 L",
+      "bullet_char": "l",
+      "bullet_font": "Wingdings",
+      "line_spacing_pts": 21.6,
+      "marL": 541338,
+      "indent": -254000
+    },
+    "lvl3": {
+      "sz": 1300,
+      "bold": null,
+      "font": "현대하모니 L",
+      "bullet_char": "Ø",
+      "bullet_font": "Wingdings",
+      "line_spacing_pts": 21.0,
+      "marL": 808038,
+      "indent": -268288
+    },
+    "lvl4": {
+      "sz": 1300,
+      "bold": null,
+      "font": "현대하모니 L",
+      "bullet_char": "-",
+      "bullet_font": "현대하모니 L",
+      "line_spacing_pts": null,
+      "marL": 896938,
+      "indent": -134938
+    },
+    "lvl5": {
+      "sz": 1400,
+      "bold": null,
+      "font": null,
+      "bullet_char": null,
+      "bullet_font": null,
+      "line_spacing_pts": null,
+      "marL": 1260000,
+      "indent": null
+    }
+  },
+  "theme_colors": {
+    "dk1": "windowText",
+    "lt1": "window",
+    "dk2": "1F497D",
+    "lt2": "EEECE1",
+    "accent1": "4F81BD",
+    "accent2": "C0504D",
+    "accent3": "9BBB59",
+    "accent4": "8064A2",
+    "accent5": "4BACC6",
+    "accent6": "F79646",
+    "hlink": "0000FF",
+    "folHlink": "800080"
+  },
+  "theme_fonts": {
+    "major_latin": "맑은 고딕",
+    "minor_latin": "맑은 고딕"
+  },
+  "motif_bar": {
+    "image": "ppt/media/image1.png",
+    "navy_rgb": [
+      1,
+      63,
+      152
+    ],
+    "green_rgb": [
+      0,
+      153,
+      67
+    ],
+    "navy_hex": "013F98",
+    "green_hex": "009943",
+    "green_starts_at_ratio": 0.9983,
+    "top_emu": 549276,
+    "height_emu": 47625
+  },
+  "body_slide_layout": "3. 본문 및 내용",
+  "rules": [
+    "새 슬라이드는 반드시 templates/company_format.pptx 를 열어 그 안의 레이아웃으로 추가한다. 새 Presentation()을 만들지 않는다.",
+    "본문 슬라이드는 레이아웃 '3. 본문 및 내용'을 쓴다.",
+    "제목은 title 플레이스홀더에, 대분류 항목은 body(idx=10) 플레이스홀더 lvl1(❖)에 넣는다.",
+    "상단 모티프 바와 우하단 페이지 번호는 레이아웃이 제공한다. 슬라이드에 다시 그리지 않는다.",
+    "본문 글꼴은 '현대하모니 L'을 유지한다. 임의의 글꼴/색을 도입하지 않는다.",
+    "본문 글자색은 테마 tx1(검정)을 유지한다."
+  ]
+}
