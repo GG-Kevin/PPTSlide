@@ -23,6 +23,7 @@ from pptx.oxml.ns import qn
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import shapes as S  # noqa: E402
+import blocks as B  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 TEMPLATE = ROOT / "templates" / "company_format.pptx"
@@ -229,7 +230,21 @@ def build(content_path, out_path):
                 and s.element.find(f".//{qn('p:ph')}").get("idx") == "10")
     body.text_frame.paragraphs[0].add_run().text = c["heading"]
 
-    build_roadmap(slide, c)
+    design = c.get("design", "roadmap")
+    if design == "roadmap":
+        build_roadmap(slide, c)
+    elif design == "blocks":
+        # 초안을 블록 목록으로 옮긴 슬라이드 (이미지 · 표 · 텍스트 자유 조합)
+        if c.get("meta"):
+            slide.shapes._spTree.append(S.textbox(
+                name="메타", x=CONTENT_R - 6000000, y=META_Y, cx=6000000, cy=280000,
+                paras=[S.para([S.run(c["meta"], font=FONT, size=1000, color=MUTED)],
+                              align="r")], anchor="ctr"))
+        for item in B.render(slide, c["blocks"], root=ROOT):
+            print("  이미지:", item["name"], f"{item['px'][0]}x{item['px'][1]}px",
+                  f"표시 {item['display_in']}in", f"{item['dpi']}dpi")
+    else:
+        raise SystemExit(f"모르는 design: {design}")
 
     Path(out_path).parent.mkdir(parents=True, exist_ok=True)
     prs.save(str(out_path))
