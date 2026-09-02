@@ -1,36 +1,125 @@
 {
   "slide_id": "intro_dev_schedule",
   "layout": "3. 본문 및 내용",
+  "design": "roadmap",
   "title": "Introduction",
   "heading": "개발 일정",
-  "process": {
-    "steps": [
-      {"label": ["KOM &", "방향성 검토"],   "top": "7D58AA", "mid": "825AB0", "bottom": "583D78"},
-      {"label": ["L&L System", "Mgmt"],     "top": "5D4EB5", "mid": "6353BB", "bottom": "413781"},
-      {"label": ["Trend Mgmt"],             "top": "465AC0", "mid": "4B60C6", "bottom": "313F88"},
-      {"label": ["Risk Mgmt"],              "top": "3D82CD", "mid": "4287D2", "bottom": "2B5B91"},
-      {"label": ["시스템 개발", "Wrap-up"],  "top": "35B5D8", "mid": "39BBDD", "bottom": "258198"}
-    ]
-  },
-  "detail": [
-    {"lvl": 2, "text": "1단계 (~3월 중순) : KOM & 방향성 검토", "bold": true},
-    {"lvl": 4, "text": "TFT 결성, 현업 사용 시스템 및 Stage/공종별 업무 파악"},
-    {"lvl": 4, "text": "개발 방향성 : 현업이 실제 쓰고 있는 체계를 중심으로 개발하고, 여기에 리스크 관리 관점을 접목"},
-    {"lvl": 4, "text": "L&L(착수 전 사례 검토)과 Trend Mgmt(입찰 대비 변경사항 기록·관리) 2개 시스템 필요성 도출"},
-
-    {"lvl": 2, "text": "2단계 (3월 중순 ~ 4월 중순) : L&L System Mgmt", "bold": true},
-    {"lvl": 4, "text": "기존 HMAP 관리시스템을 기반으로 사례를 축적·활용하는 L&L 운영 시스템 개발"},
-    {"lvl": 4, "text": "즉시 반영이 어렵거나 장기·중요 사안은 Trend Mgmt로 이관하여 관리하는 체계 구축"},
-
-    {"lvl": 2, "text": "3단계 (4월 중순 ~ 5월 중순) : Trend Mgmt", "bold": true},
-    {"lvl": 4, "text": "운영 중인 SAT4 · CSSP 자료를 연계하여 Trend Management 시스템 개발"},
-    {"lvl": 4, "text": "Log → Master → Trend 3단계 분류 체계 적용 (Log 최하위, Trend 최상위)"},
-
-    {"lvl": 2, "text": "4단계 (5월 중순 ~ 6월, 9월) : Risk Mgmt", "bold": true},
-    {"lvl": 4, "text": "L&L 및 Trend Management 시스템에 리스크(Risk) 관리 개념 도입"},
-
-    {"lvl": 2, "text": "5단계 (10월 ~ 12월) : 시스템 개발 Wrap-up", "bold": true},
-    {"lvl": 4, "text": "보안 · 로그인 · 결제 시스템을 추가하여 런칭 예정"}
+  "meta": "2026  시스템 개발 로드맵   |   5 Phases   |   3월 → 12월",
+  "axis": [
+    "3월",
+    "4월",
+    "5월",
+    "6월",
+    "7월",
+    "8월",
+    "9월",
+    "10월",
+    "11월",
+    "12월"
   ],
-  "source_script": "사용자가 제공한 1~5단계 구술 스크립트를 개조식으로 재구성한 결과. 원문은 content/source_script.txt 참고."
+  "phases": [
+    {
+      "no": "01",
+      "name": "KOM & 방향성 검토",
+      "period": "~ 3월 중순",
+      "spans": [
+        [
+          0.0,
+          0.55
+        ]
+      ],
+      "color": "7A5AA8",
+      "dark": "5B4185",
+      "tint": "F1ECF7",
+      "points": [
+        "TFT 결성",
+        "현업 시스템 · 공종별 업무 파악",
+        "2개 시스템 필요성 도출"
+      ]
+    },
+    {
+      "no": "02",
+      "name": "L&L System Mgmt",
+      "period": "3월 중순 ~ 4월 중순",
+      "spans": [
+        [
+          0.55,
+          1.5
+        ]
+      ],
+      "color": "5B54B8",
+      "dark": "423C90",
+      "tint": "EDECF8",
+      "points": [
+        "HMAP 기반 L&L 시스템 개발",
+        "착수 전 사례 검토 체계 구축",
+        "미반영 건 Trend Mgmt 이관"
+      ]
+    },
+    {
+      "no": "03",
+      "name": "Trend Mgmt",
+      "period": "4월 중순 ~ 5월 중순",
+      "spans": [
+        [
+          1.5,
+          2.5
+        ]
+      ],
+      "color": "4A63C4",
+      "dark": "35499C",
+      "tint": "EAEEFA",
+      "points": [
+        "SAT4 · CSSP 자료 연계",
+        "입찰 대비 변경사항 기록 · 관리",
+        "Log → Master → Trend 3단 분류"
+      ]
+    },
+    {
+      "no": "04",
+      "name": "Risk Mgmt",
+      "period": "5월 중순 ~ 6월, 9월",
+      "spans": [
+        [
+          2.5,
+          4.0
+        ],
+        [
+          6.0,
+          7.0
+        ]
+      ],
+      "color": "3F87D0",
+      "dark": "2C64A4",
+      "tint": "E8F1FB",
+      "points": [
+        "L&L 에 리스크 개념 도입",
+        "Trend Mgmt 에 리스크 개념 도입"
+      ]
+    },
+    {
+      "no": "05",
+      "name": "시스템 개발 Wrap-up",
+      "period": "10월 ~ 12월",
+      "spans": [
+        [
+          7.0,
+          10.0
+        ]
+      ],
+      "color": "2FB3D6",
+      "dark": "1F8AA8",
+      "tint": "E5F6FB",
+      "points": [
+        "보안 · 로그인 기능 추가",
+        "결제 시스템 연동",
+        "시스템 런칭 예정"
+      ]
+    }
+  ],
+  "key_message": {
+    "label": "핵심 방향",
+    "text": "현업이 실제 사용하는 체계(L&L · Trend Management)를 기반으로 개발하고, 여기에 리스크 관리 관점을 접목 → 보안 · 결제까지 갖춘 통합 시스템으로 런칭"
+  },
+  "source": "content/source_script.txt 의 구술 스크립트를 재구성"
 }

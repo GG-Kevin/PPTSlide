@@ -19,7 +19,14 @@ from pptx.oxml.ns import qn
 ROOT = Path(__file__).resolve().parent.parent
 SPEC = json.loads((ROOT / "format" / "format_spec.json").read_text(encoding="utf-8"))
 REFERENCE = ROOT / "format" / "reference_intro_slide.png"
-ALLOWED_FONTS = {"현대하모니 L", "Arial", "Wingdings", None}
+# 회사 폰트 + 테마 폰트(맑은 고딕, 회사 폰트가 없는 PC 대비) + 불릿용 심볼 폰트
+ALLOWED_FONTS = {"현대하모니 L", "맑은 고딕", "Arial", "Wingdings", None}
+
+# 본문 콘텐츠가 넘어서면 안 되는 경계 = 본문 플레이스홀더 bbox (포맷에서 계산)
+_BODY_PH = next(s for s in SPEC["layouts"][SPEC["body_slide_layout"]]["shapes"]
+                if s["ph"] and s["ph"].get("idx") == "10")
+BODY_BOX = (_BODY_PH["left"], _BODY_PH["top"],
+            _BODY_PH["left"] + _BODY_PH["width"], _BODY_PH["top"] + _BODY_PH["height"])
 
 results = []
 
@@ -98,6 +105,32 @@ def verify_structure(pptx_path):
                 clashes.append(sh.name)
         check(f"{p} 모티프바/페이지번호 영역 침범 없음", not clashes, ", ".join(clashes))
 
+        # 직접 추가한 도형이 본문 영역(플레이스홀더 bbox)을 벗어나지 않았는지
+        bx0, by0, bx1, by1 = BODY_BOX
+        tol = 20000
+        strays = [sh.name for sh in slide.shapes
+                  if sh.element.find(f".//{qn('p:ph')}") is None and sh.left is not None
+                  and (sh.left < bx0 - tol or sh.top < by0 - tol
+                       or sh.left + sh.width > bx1 + tol
+                       or sh.top + sh.height > by1 + tol)]
+        check(f"{p} 도형이 본문 영역 안에 있음", not strays, ", ".join(strays[:5]))
+
+        # 카드끼리 겹치지 않는지 (좌우 배치가 무너지면 바로 잡힌다)
+        cards = sorted([sh for sh in slide.shapes if sh.name.startswith("카드 ")],
+                       key=lambda s: s.left)
+        laps = [f"{a.name}/{b.name}" for a, b in zip(cards, cards[1:])
+                if a.left + a.width > b.left + 1000]
+        check(f"{p} 카드 겹침 없음", not laps, f"{len(cards)}장, " + ", ".join(laps))
+
+        # 간트 기간 바가 월 축 범위 안에 있는지
+        grids = [sh for sh in slide.shapes if sh.name.startswith("격자 ")]
+        bars = [sh for sh in slide.shapes if sh.name.startswith("기간바 ")]
+        if grids and bars:
+            ax0 = min(g.left for g in grids)
+            ax1 = max(g.left + g.width for g in grids)
+            over = [b.name for b in bars if b.left < ax0 - 1000 or b.left + b.width > ax1 + 1000]
+            check(f"{p} 기간 바가 월 축 범위 내", not over, f"{len(bars)}개, " + ", ".join(over))
+
         # 슬라이드 밖으로 나간 도형 없음
         out = [sh.name for sh in slide.shapes
                if sh.left is not None and (sh.left < 0 or sh.top < 0
@@ -141,8 +174,10 @@ def verify_render(png_path):
     ref = Image.open(REFERENCE).convert("RGB")
     W, H = img.size
 
-    check("배경 흰색", img.getpixel((int(W * 0.5), int(H * 0.93)))[0] > 245,
-          str(img.getpixel((int(W * 0.5), int(H * 0.93)))))
+    # 본문 영역 아래 여백(콘텐츠도 페이지번호도 없는 곳)에서 배경색을 본다
+    bg_pts = [(0.40, 0.97), (0.012, 0.50), (0.60, 0.985)]
+    bg = [img.getpixel((int(W * fx), int(H * fy))) for fx, fy in bg_pts]
+    check("배경 흰색", all(p[0] > 245 and p[1] > 245 and p[2] > 245 for p in bg), str(bg))
 
     got, want = motif_profile(img), motif_profile(ref)
     if check("상단 모티프 바 검출", got is not None and want is not None, f"{got}"):
@@ -155,14 +190,17 @@ def verify_render(png_path):
         check("모티프 바 색 분할점", abs(got["split_ratio"] - want["split_ratio"]) < 0.02,
               f"{got['split_ratio']} vs {want['split_ratio']}")
 
-    def dark_bbox(im, x0, y0, x1, y1):
+    def dark_bbox(im, x0, y0, x1, y1, skip=None):
+        """어두운 픽셀의 bbox 를 비율로 반환. skip 은 제외할 사각형(비율)."""
         xs, ys = [], []
+        iw, ih = im.size
         for y in range(int(y0), int(y1)):
             for x in range(int(x0), int(x1)):
+                if skip and skip[0] <= x / iw <= skip[2] and skip[1] <= y / ih <= skip[3]:
+                    continue
                 if sum(im.getpixel((x, y))) < 400:
                     xs.append(x); ys.append(y)
-        return (min(xs) / im.size[0], min(ys) / im.size[1],
-                max(xs) / im.size[0], max(ys) / im.size[1]) if xs else None
+        return (min(xs) / iw, min(ys) / ih, max(xs) / iw, max(ys) / ih) if xs else None
 
     t_got = dark_bbox(img, 5, H * 0.01, W * 0.6, H * 0.075)
     t_ref = dark_bbox(ref, 5, ref.size[1] * 0.01, ref.size[0] * 0.6, ref.size[1] * 0.075)
@@ -175,14 +213,20 @@ def verify_render(png_path):
     pn = dark_bbox(img, W * 0.95, H * 0.94, W - 2, H - 2)
     check("우하단 페이지 번호", pn is not None, str(pn))
 
-    # 페이지 번호 영역(우하단)은 제외하고 본문 콘텐츠만 본다
-    body = dark_bbox(img, 2, H * 0.10, W - 2, H * 0.94)
-    ref_body = dark_bbox(ref, 2, ref.size[1] * 0.10, ref.size[0] - 2, ref.size[1] * 0.94)
+    # 본문 허용 경계는 포맷의 본문 플레이스홀더에서 계산한다 (임의의 상수 금지)
+    right_max = BODY_BOX[2] / SPEC["slide_size_emu"]["cx"] + 0.005
+    bottom_max = BODY_BOX[3] / SPEC["slide_size_emu"]["cy"] + 0.005
+    page_num = (0.95, 0.94, 1.0, 1.0)   # 우하단 페이지 번호는 본문이 아니므로 제외
+    body = dark_bbox(img, 2, H * 0.10, W - 2, H * 0.99, skip=page_num)
+    ref_body = dark_bbox(ref, 2, ref.size[1] * 0.10, ref.size[0] - 2,
+                         ref.size[1] * 0.99, skip=page_num)
     if check("본문 콘텐츠 존재", body is not None, str(body)):
         check("본문 좌측 여백", abs(body[0] - ref_body[0]) < 0.012,
               f"x={body[0]:.4f} vs 기준 {ref_body[0]:.4f}")
-        check("본문 우측 여백 초과 없음", body[2] <= 0.97, f"right={body[2]:.4f}")
-        check("본문 하단 넘침 없음", body[3] <= 0.935, f"bottom={body[3]:.4f}")
+        check("본문 우측 여백 초과 없음", body[2] <= right_max,
+              f"right={body[2]:.4f} (한계 {right_max:.4f})")
+        check("본문 하단 넘침 없음", body[3] <= bottom_max,
+              f"bottom={body[3]:.4f} (한계 {bottom_max:.4f})")
 
 
 def main():
