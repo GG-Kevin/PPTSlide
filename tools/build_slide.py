@@ -31,6 +31,12 @@ BAND_TOP_PX, BAND_BOTTOM_PX = 126.0, 258.5
 # (좌, 우) px — 이웃한 셰브런이 촉(tip) 깊이만큼 겹치도록 배치된다
 STEP_BOX_PX = [(100, 301), (235, 552), (486, 802), (736, 1053), (987, 1261)]
 STEP_LABEL_PT = 1700
+# 촉 깊이 조절값. prstGeom 기본값에 맡기면 안 된다 —
+# chevron 기본 adj 는 50000 이지만 homePlate 기본 adj 는 16667 이라(ECMA-376 preset)
+# 1번 도형만 촉이 1/3 깊이로 얕게 나와 2번의 홈에 맞물리지 않는다.
+# (LibreOffice 는 homePlate 를 50000 으로 그려서 미리보기에서는 이 결함이 가려진다.)
+# 촉 깊이 = min(w,h) * adj/100000 = 1194067 * 0.5 = 597033 EMU ≒ 겹침 66px.
+STEP_TIP_ADJ = 50000
 # 1번(homePlate)은 촉을 제외한 사각형에 글자가 중앙정렬되어 왼쪽으로 쏠린다 → 광학 보정
 STEP1_LINS_PX = 20.0
 
@@ -85,7 +91,9 @@ def chevron_xml(shape_id, idx, step, box_px, band_top, band_h):
         f"<p:cNvSpPr/><p:nvPr/></p:nvSpPr>"
         f"<p:spPr>"
         f'<a:xfrm><a:off x="{left}" y="{band_top}"/><a:ext cx="{width}" cy="{band_h}"/></a:xfrm>'
-        f'<a:prstGeom prst="{prst}"><a:avLst/></a:prstGeom>'
+        f'<a:prstGeom prst="{prst}">'
+        f'<a:avLst><a:gd name="adj" fmla="val {STEP_TIP_ADJ}"/></a:avLst>'
+        f"</a:prstGeom>"
         f'<a:gradFill flip="none" rotWithShape="1"><a:gsLst>'
         f'<a:gs pos="0"><a:srgbClr val="{step["top"]}"/></a:gs>'
         f'<a:gs pos="12000"><a:srgbClr val="{step["mid"]}"/></a:gs>'
