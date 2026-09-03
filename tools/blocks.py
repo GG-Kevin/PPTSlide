@@ -34,6 +34,7 @@ TABLE_HEAD = "2C3E5D"
 FONT = "맑은 고딕"
 
 MIN_DPI = 110   # 스냅샷이 흐려 보이기 시작하는 경계
+MIN_ROW_H = int(0.22 * IN)   # 9.5pt 본문이 들어가는 표 행의 실질 최소 높이
 
 
 def emu_box(box):
@@ -147,6 +148,15 @@ def add_table(slide, spec, box):
 
     head_h = int(spec.get("head_h", 0.36) * IN)
     body_h = int((cy - head_h) / max(1, len(rows)))
+    # 파워포인트는 글자가 들어갈 최소 높이 아래로 행을 줄이지 않는다. 그래서 box 보다
+    # 표가 길어져 아래 블록을 덮는데, 도형 좌표상으로는 box 안이라 검증에 걸리지 않는다.
+    # 조용히 겹치는 대신 빌드 단계에서 잡는다.
+    if body_h < MIN_ROW_H:
+        raise SystemExit(
+            f"표 '{spec.get('name', '표')}' 행 높이 부족: "
+            f"{body_h / IN:.3f}in < 최소 {MIN_ROW_H / IN:.2f}in "
+            f"({len(rows)}행). box 높이를 "
+            f"{(head_h + MIN_ROW_H * len(rows)) / IN:.2f}in 이상으로 늘려야 한다.")
     for i, row in enumerate(tbl.rows):
         row.height = Emu(head_h if i == 0 else body_h)
 
@@ -321,9 +331,10 @@ def add_flow(slide, spec, box):
                     shadow=S.soft_shadow()))
         if i < n - 1:
             ax = nx + w + (gap - 150000) / 2
+            # 화살표 색은 기본 회색. 단계 사이가 '단절'인 경우 노드에서 덮어쓴다.
             add(S.shape(name=f"화살표 {i + 1}", prst="triangle", rot=5400000,
                         x=ax, y=y + node_h / 2 - 90000, cx=150000, cy=180000,
-                        fill=S.solid("A9B4C6")))
+                        fill=S.solid(nd.get("arrow_color", "A9B4C6"))))
             if nd.get("arrow_label"):
                 add(S.textbox(name=f"화살표라벨 {i + 1}",
                               x=nx + w - 500000, y=y + node_h + 60000,
@@ -351,7 +362,11 @@ def _render_one(slide, b, root):
     elif t == "flow":
         add_flow(slide, b, b["box"])
     else:
-        raise SystemExit(f"모르는 블록 유형: {t}")
+        # 보고자료용 확장 블록(colhead·vsteps·cycle·strip)에 위임한다
+        import blocks_report as R
+        if t not in R.RENDERERS:
+            raise SystemExit(f"모르는 블록 유형: {t}")
+        R.render_block(slide, b)
     return []
 
 
